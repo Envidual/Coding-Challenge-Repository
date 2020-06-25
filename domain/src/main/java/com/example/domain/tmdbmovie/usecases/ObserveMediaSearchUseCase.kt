@@ -21,9 +21,9 @@ class ObserveMediaSearchUseCase @Inject constructor(
 
     override fun buildUseCaseObservable(params: Params?): Flowable<List<MediaList>> {
         clear()
-        return tmDbMovieRepository.observeTMDbTvListForTitle("%${params!!.mediaToSearchFor}%")
+        return tmDbMovieRepository.observeTMDbTvListForTitle("${params!!.mediaToSearchFor}")
             .combineLatest(
-                tmDbMovieRepository.observeTMDbMoviesForTitle("%${params.mediaToSearchFor}%"),
+                tmDbMovieRepository.observeTMDbMoviesForTitle("${params.mediaToSearchFor}"),
                 localDatabaseSearchStream.toFlowable(BackpressureStrategy.LATEST)
             )
             .map {
