@@ -2,8 +2,8 @@ package com.example.remote.tmdbmovie
 
 import com.example.data.tmdbmovie.TMDbMovieRemote
 import com.example.domain.tmdbmovie.model.moviedetail.Credits
-import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.moviedetail.TMDbMovieDetail
+import com.example.domain.tmdbmovie.model.movielist.Result
 import com.example.domain.tmdbmovie.model.tvdetail.TMDbTvDetail
 import com.example.domain.tmdbmovie.model.tvlist.TvListResult
 import com.example.remote.tmdbmovie.model.credits.mapToDomainCredits
@@ -55,8 +55,8 @@ class TMDbMovieRemoteImpl @Inject constructor(
 
     override suspend fun fetchTMDbTvList(tmdbTvToSearchFor: String): List<TvListResult> {
         return tmDbMovieService.getTMDbTvList(
-            tmdbTvToSearchFor = tmdbTvToSearchFor,
-            apikey = "2797198b75a6557cae56bdfdb2dd1b52"
+            "2797198b75a6557cae56bdfdb2dd1b52",
+            tmdbTvToSearchFor
         ).resultsRaw.map { it.mapToDomainResult() }
     }
 
